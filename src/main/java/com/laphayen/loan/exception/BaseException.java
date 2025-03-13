@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BaseException {
+public class BaseException extends RuntimeException {
 
     private String code="";
     private String description="";
