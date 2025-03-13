@@ -45,5 +45,23 @@ public class CounselServiceImpl implements CounselService {
                 .toList();
     }
 
+    @Override
+    public CounselDTO.Response update(Long counselId, CounselDTO.Request request) {
+        Counsel counsel = counselRepository.findById(counselId)
+                .orElseThrow(() -> new BaseException(ResultType.SYS_ERROR));
+
+        counsel.setName(request.getName());
+        counsel.setCellPhone(request.getCellPhone());
+        counsel.setEmail(request.getEmail());
+        counsel.setMemo(request.getMemo());
+        counsel.setAddress(request.getAddress());
+        counsel.setAddressDetail(request.getAddressDetail());
+        counsel.setZipCode(request.getZipCode());
+
+        counselRepository.save(counsel);
+
+        return modelMapper.map(counsel, CounselDTO.Response.class);
+    }
+
 
 }

@@ -12,4 +12,6 @@ public interface CounselService {
 
     List<CounselDTO.Response> getlist();
 
+    CounselDTO.Response update(Long counselId, CounselDTO.Request request);
+
 }
