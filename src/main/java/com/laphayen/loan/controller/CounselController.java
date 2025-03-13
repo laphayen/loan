@@ -33,4 +33,11 @@ public class CounselController extends AbstractController {
         return ok(counselService.get(counselId));
     }
 
+    // 대출 상담 수정
+    @PutMapping("/{counselId}")
+    public ResponseDTO<CounselDTO.Response> update(@PathVariable Long counselId, @RequestBody CounselDTO.Request request) {
+        return ok(counselService.update(counselId, request));
+    }
+
+    
 }
