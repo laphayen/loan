@@ -21,6 +21,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     public ApplicationDTO.Response create(ApplicationDTO.Request request) {
         Application application = modelMapper.map(request, Application.class);
         application.setAppliedAt(LocalDateTime.now());
+        application.setCreatedAt(LocalDateTime.now());
+        application.setUpdatedAt(LocalDateTime.now());
 
         Application applied = applicationRepository.save(application);
 
