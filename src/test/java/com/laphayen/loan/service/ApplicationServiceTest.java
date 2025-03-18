@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
@@ -51,5 +52,24 @@ public class ApplicationServiceTest {
 
         assertThat(actual.getName()).isSameAs(entity.getName());
     }
+
+
+    @Test
+    void Should_ReturnResponseOfExistApplicationEntity_When_ExistApplicationId() {
+
+        Long findId = 1L;
+
+        Application entity = Application.builder()
+                .applicationId(1L)
+                .build();
+
+        when(applicationRepository.findById(findId)).thenReturn(Optional.ofNullable(entity));
+
+        ApplicationDTO.Response actual = applicationService.get(1L);
+
+        assertThat(actual.getApplicationId()).isSameAs(findId);
+
+    }
+
 
 }
